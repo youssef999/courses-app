@@ -44,7 +44,8 @@ MaterialScreen({required this.doctor, required this.cat});
                   ],
                 ),
                 SizedBox(height:15,),
-
+Text(doctor),
+Text(cat),
 
 
 

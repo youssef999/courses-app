@@ -71,7 +71,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                                     children: [
                                       Container(
                                         width: 420,
-                                        height: 160,
+                                        height: 140,
                                         child: Image.network(
                                             posts['image'],
                                             fit: BoxFit.fill),

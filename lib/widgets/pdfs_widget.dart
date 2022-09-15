@@ -26,8 +26,8 @@ class _PdfWidgetState extends State<PdfWidget> {
      return  StreamBuilder(
          stream: FirebaseFirestore.instance
              .collection('pdfs')
-            // .where('cat', isEqualTo: cat)
-          //   .where('doctor', isEqualTo: doctor)
+             .where('cat', isEqualTo: widget.cat)
+             .where('doctor', isEqualTo:widget. doctor)
              .snapshots(),
          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
            if (!snapshot.hasData)
