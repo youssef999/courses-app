@@ -1,17 +1,33 @@
 import 'package:course_app/constants/colors.dart';
-import 'package:course_app/models/levels.dart';
 import 'package:course_app/screens/home/widget/active_courses.dart';
 import 'package:course_app/screens/home/widget/category_titel.dart';
 import 'package:course_app/screens/home/widget/emoji_text.dart';
-import 'package:course_app/screens/home/widget/levels_slider.dart';
 import 'package:course_app/screens/home/widget/other_levels.dart';
 import 'package:course_app/screens/home/widget/search_input.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatelessWidget {
-  int _currentTab = 0;
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+
+  secureScreen() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    secureScreen();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,18 +39,19 @@ class HomePage extends StatelessWidget {
           children: [
             EmojiText(),
             SearchInput(),
-            const CatogaryTitel(leftText: "Choose Your Level", rightText: ""),
+            CatogaryTitel(leftText: "10".tr, rightText: ""),
             OtherLevels(),
             ActiveCourses(),
           ],
         ),
       ),
 
-      /// floating support
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print("Support");
+          launcherWhatsapp('+201033487903', "");
         },
+
         child: Icon(
           Icons.contact_support,
           color: Colors.black,
@@ -54,7 +71,7 @@ class HomePage extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
-          "Hello",
+          "1".tr,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
         ),
       ),
@@ -64,13 +81,6 @@ class HomePage extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 10, right: 27),
               padding: EdgeInsets.all(1),
-              // decoration: BoxDecoration(
-              //   border:
-              //       Border.all(color: kFontLight.withOpacity(0.3), width: 2),
-              //   borderRadius: BorderRadius.circular(15),
-              // ),
-              // child: Image.asset("assets/icons/notification.png"),
-              // width: 25,
             ),
             Positioned(
                 top: 15,
@@ -86,5 +96,10 @@ class HomePage extends StatelessWidget {
       ],
       titleTextStyle: TextStyle(fontSize: 16, color: kFontLight),
     );
+  }
+
+  void launcherWhatsapp(@required phone, @required msg) async {
+    String url = 'whatsapp://send?phone=$phone&text=$msg';
+    await canLaunch(url) ? launch(url) :launch(url);
   }
 }

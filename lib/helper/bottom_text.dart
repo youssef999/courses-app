@@ -1,23 +1,23 @@
-import 'package:course_app/screens/home/widget/Bottom_bar.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
+
 
 class BottomText extends StatelessWidget {
   final String text;
+  final Function onTab;
   const BottomText({
     Key? key,
     required this.text,
+    required this.onTab,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.to(BottomBar());
-      },
+      onTap: onTab(),
       child: Container(
         alignment: Alignment.center,
         height: 55,

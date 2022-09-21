@@ -1,7 +1,7 @@
+import 'package:course_app/screens/courses/Course.dart';
 import 'package:course_app/screens/home/widget/home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 import '../../profile/profile_screen.dart';
 
@@ -14,9 +14,11 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int myIndex = 0;
   List<Widget> widgetList = [
+
     HomePage(),
-    HomePage(),
-    HomePage(),
+
+    MyCoursesScreen(),
+
     ProfileScreen(),
   ];
   @override
@@ -24,7 +26,7 @@ class _BottomBarState extends State<BottomBar> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color.fromARGB(255, 187, 186, 186),
+        backgroundColor: Colors.grey,
         toolbarHeight: 1,
       ),
       body: Center(
@@ -32,23 +34,24 @@ class _BottomBarState extends State<BottomBar> {
       ),
       bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: false,
-          selectedItemColor: Colors.black,
+          selectedItemColor: Color.fromARGB(255, 116, 27, 27),
           unselectedItemColor: Colors.white,
           backgroundColor: Color.fromARGB(255, 187, 186, 186),
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
+
             setState(() {
               myIndex = index;
             });
           },
           currentIndex: myIndex,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "26".tr),
+            // BottomNavigationBarItem(
+            //     icon: Icon(Icons.favorite_border_outlined), label: "27".tr),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border_outlined), label: "Favourite"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.school_outlined), label: "my courses"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+                icon: Icon(Icons.school_outlined), label: "28".tr),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "29".tr),
           ]),
     );
   }

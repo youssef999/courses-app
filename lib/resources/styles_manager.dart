@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-import 'font_manager.dart';
+ import 'package:flutter/material.dart';
+ import 'font_manager.dart';
 
  TextStyle _getTextStyle (double fontSize, FontWeight fontWeight, Color color) {
 
@@ -9,6 +9,7 @@ import 'font_manager.dart';
       fontFamily: FontConstants.fontFamily,
       color: color,
       fontWeight: fontWeight);
+
 }
 
 // regular style

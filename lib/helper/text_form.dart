@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+
 class TextForm extends StatelessWidget {
   const TextForm({
     Key? key,
@@ -16,7 +17,6 @@ class TextForm extends StatelessWidget {
   final String text;
   final Function onSave;
   final Function validator;
-
   final TextInputType textinputtype;
   final bool obscure;
 
@@ -38,8 +38,8 @@ class TextForm extends StatelessWidget {
         controller: controller,
         keyboardType: textinputtype,
         obscureText: obscure,
-        onSaved:onSave(),
-        validator:validator(),
+        onSaved: onSave(Null),
+        validator: validator(Null),
         decoration: InputDecoration(
             hintText: text,
             border: InputBorder.none,

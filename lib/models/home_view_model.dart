@@ -14,7 +14,6 @@ class HomeViewModel extends GetxController {
   List<CategoriesModel> _categoriesModel = [];
   List<BestCourseModel> get bestCourseModel => _bestCourseModel;
   List<BestCourseModel> _bestCourseModel = [];
-  
 
   HomeViewModel() {
     getCategory();

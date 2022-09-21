@@ -1,13 +1,13 @@
 import 'package:course_app/constants/colors.dart';
 import 'package:course_app/models/levels.dart';
-import 'package:course_app/resources/color_manager.dart';
-import 'package:course_app/screens/choice.dart';
 import 'package:course_app/screens/detail/details_subject.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+
+import '../../courses/choice.dart';
 
 class LevelItem extends StatelessWidget {
   final Levels levels;
@@ -26,7 +26,7 @@ class LevelItem extends StatelessWidget {
                 color: Colors.black.withOpacity(0.2),
                 blurRadius: 7,
               )
-            ], color: ColorManager.primary, borderRadius: BorderRadius.circular(20)),
+            ], color: kPrimaryLight, borderRadius: BorderRadius.circular(20)),
             child: Column(
               children: [
                 Expanded(
@@ -39,7 +39,8 @@ class LevelItem extends StatelessWidget {
                     child: InkWell(
                         onTap: () {
                           Get.to(ChoiceScreen(
-                            level:levels.id,
+                            level: levels.id,
+                            levels: levels,
                           ));
                         },
                         child: Image.asset(levels.Image, fit: BoxFit.cover)),

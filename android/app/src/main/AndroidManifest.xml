@@ -8,7 +8,7 @@
     <application
         android:label="Life Course"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -48,10 +48,9 @@
         android:name="com.facebook.CustomTabActivity"
         android:exported="true">
         <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="@string/fb_login_protocol_scheme" />
+            <action android:name="FLUTTER_NOTFICATION_CLICK" />
+            <category android:name="android.intent.category.LANCHER" />
+            
         </intent-filter>
     </activity>
 

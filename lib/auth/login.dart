@@ -1,14 +1,13 @@
 import 'package:course_app/auth/Sign_up.dart';
-import 'package:course_app/auth/forget_password.dart';
-import 'package:course_app/helper/bottom_text.dart';
-import 'package:course_app/helper/text_form.dart';
 import 'package:course_app/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../helper/social_media.dart';
-import '../screens/home/widget/Bottom_bar.dart';
 
 class LoginScreen extends GetWidget<AuthViewModel> {
+  String ? log;
+
+  LoginScreen({this.log});
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -17,6 +16,11 @@ class LoginScreen extends GetWidget<AuthViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.grey,
+        toolbarHeight: 1,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -41,9 +45,9 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                     //   height: 15,
                     // ),
                     Container(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: Text(
-                          "Sign in to your account",
+                          "2".tr,
                           style: TextStyle(
                               color: Colors.black54,
                               fontSize: 20,
@@ -52,60 +56,137 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                     SizedBox(
                       height: 25,
                     ),
-                    TextForm(
-                      controller: emailController,
-                      text: "Enter your Email",
-                      textinputtype: TextInputType.emailAddress,
-                      obscure: false,
-                      onSave:(value){
 
-                      },
-                      validator:(value){
-
-                      },
-                    ),
                     SizedBox(
                       height: 10,
                     ),
-                    TextForm(
-                      controller: passwordController,
-                      text: "Enter your password",
-                      textinputtype: TextInputType.text,
-                      obscure: true,
-                      onSave:(){},
-                      validator:(){
+                    Container(
+                      height: 50,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 7,
+                            )
+                          ]),
+                      child: TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        obscureText: false,
+                        onSaved: (value) {
+                          controller.email = value!;
+                        },
+                        validator: (value) {
+                          if (value == null) {
+                            print("Error");
+                          }
+                        },
+                        decoration: InputDecoration(
+                            hintText: "3".tr,
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.all(0),
+                            hintStyle: TextStyle(height: 1)),
+                      ),
+                    ),
 
-                      },
-                    ),
                     SizedBox(
-                      height: 7,
+                      height: 10,
                     ),
-                    Row(
-                      children: [
-                        Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(ForgetPasswordScreen());
+                    Container(
+                      height: 50,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 7,
+                            )
+                          ]),
+                      child: TextFormField(
+                        controller: passwordController,
+                        keyboardType: TextInputType.text,
+                        obscureText: true,
+                        onSaved: (value) {
+
+                          controller.password = value!;
+
                           },
-                          child: Text("Forget password",
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                              )),
-                        )
-                      ],
+                        validator: (value) {
+                          if (value == null) {
+                            print("Error");
+                          }
+                        },
+                        decoration: InputDecoration(
+                            hintText: "4".tr,
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.all(0),
+                            hintStyle: TextStyle(height: 1)),
+                      ),
                     ),
+
+                    // SizedBox(
+                    //   height: 7,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Spacer(),
+                    //     GestureDetector(
+                    //       onTap: () {
+                    //         Get.to(ForgetPasswordScreen());
+                    //       },
+                    //       child: Text("Forget password",
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //             fontSize: 15,
+                    //             fontWeight: FontWeight.w400,
+                    //           )),
+                    //     )
+                    //   ],
+                    // ),
                     SizedBox(
                       height: 50,
                     ),
-                    BottomText(
-                      text: "Sign in",
+
+                    InkWell(
+                      onTap: () {
+                        _formKey.currentState!.save();
+                        if (_formKey.currentState!.validate()) {
+                          controller.signInWithEmailAndPassword();
+                        }
+                      },
+
+
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 55,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 187, 186, 186),
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 10,
+                              ),
+                            ]),
+                        child: Text(
+                          "5".tr,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20),
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    SocialMedia(),
+
+                    // SizedBox(
+                    //   height: 25,
+                    // ),
+                    // SocialMedia(),
                     SizedBox(
                       height: 50,
                     ),
@@ -113,7 +194,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Dont\'t have an account? ",
+                          "35".tr,
                           style: TextStyle(color: Colors.black, fontSize: 16),
                         ),
                         InkWell(
@@ -121,7 +202,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                               Get.to(SignUpScreen());
                             },
                             child: Text(
-                              "Sign up",
+                              "36".tr,
                               style: TextStyle(
                                   color: Color.fromARGB(255, 187, 186, 186),
                                   fontSize: 16),

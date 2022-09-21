@@ -1,18 +1,23 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:course_app/constants/colors.dart';
-import 'package:course_app/resources/color_manager.dart';
-import 'package:course_app/screens/search_screen.dart';
+import 'package:course_app/screens/home/search_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-class SearchInput extends StatelessWidget {
+class SearchInput extends StatefulWidget {
+  @override
+  State<SearchInput> createState() => _SearchInputState();
+}
 
-    TextEditingController searchController= TextEditingController();
+class _SearchInputState extends State<SearchInput> {
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,16 +27,15 @@ class SearchInput extends StatelessWidget {
             margin: EdgeInsets.all(25),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: ColorManager.primary, width: 2)),
+                border: Border.all(color: kFontLight, width: 2)),
             child: TextField(
               cursorColor: kFontLight,
-              controller:searchController,
               decoration: InputDecoration(
                 //fillColor: kFont.withOpacity(0.1),
                 filled: true,
                 // contentPadding: EdgeInsets.all(18),
                 border: InputBorder.none,
-                hintText: "Search for  courses...",
+                hintText: "11".tr,
                 hintStyle: TextStyle(color: kFontLight),
               ),
             ),
@@ -44,7 +48,8 @@ class SearchInput extends StatelessWidget {
                 padding: EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: ColorManager.primary,
+                  color:  Color.fromARGB(255, 21, 20, 20).withOpacity(0.9),
+
                 ),
                 child: Icon(
                   Icons.search,
@@ -53,9 +58,9 @@ class SearchInput extends StatelessWidget {
                 ),
                 width: 30,
               ),
-              onTap:(){
+              onTap: () {
                 Get.to(SearchScreen(
-                  text:searchController.text,
+                  text: searchController.text,
                 ));
               },
             ),

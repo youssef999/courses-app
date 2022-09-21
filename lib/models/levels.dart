@@ -1,6 +1,6 @@
-import 'dart:ui';
-// import 'package:course_app/models/module.dart';
-import 'package:course_app/screens/details_screen.dart';
+
+
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class Levels {
   String id;
@@ -19,25 +19,25 @@ class Levels {
     return [
       Levels(
         "1",
-        "Level One",
+        "12".tr,
         1,
         "assets/images/1.png",
       ),
       Levels(
         "2",
-        "Level Two",
+        "13".tr,
         2,
         "assets/images/2.png",
       ),
       Levels(
         "3",
-        "Level Three",
+        "14".tr,
         3,
         "assets/images/3.png",
       ),
       Levels(
         "4",
-        "Level Four",
+        "15".tr,
         4,
         "assets/images/4.png",
       ),
